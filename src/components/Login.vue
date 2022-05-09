@@ -5,14 +5,16 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  <div>
-        <h1>Login</h1>
-        <input type="text" placeholder="Username" v-model="username">
-        <input type="text" placeholder="Email" v-model="message">
-        <input type="password" placeholder="Password">
-        <input type="submit" @click="addMessage" value="Login">
-    </div>
+  <div class="card">
+    <h1>Sign in</h1>
+
+    <form action="">
+      <input type="text" placeholder="Email" v-model="email" class="formInput">
+      <input type="password" placeholder="Password" class="formInput">
+      <input type="submit" @click="addMessage" value="Submit" class="btn">
+    </form>
+
+    <a href="#" class="link">Register here</a>
+  </div>
 </template>
 
-<style scoped>
-</style>
