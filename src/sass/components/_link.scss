@@ -1,0 +1,6 @@
+@use "../colors";
+
+.link {
+    font-size: 1em;
+    color: colors.$contrast;
+}

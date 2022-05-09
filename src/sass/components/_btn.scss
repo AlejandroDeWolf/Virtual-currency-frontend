@@ -1,0 +1,21 @@
+@use "../colors";
+
+.btn {
+    width: 240px;
+    height: 56px;
+    border-radius: 50px;
+    color: colors.$contrast;
+    background: linear-gradient(93.09deg, #758AF5 0%, #3D5AF1 100%);
+    border: none;
+    text-transform: uppercase;
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 1em 0 .6em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: linear-gradient(86.91deg, #3D5AF1 0%, #758AF5 100%);
+}
