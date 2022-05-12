@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue'
+import config from '../../config/config'
+
 let firstname = ref('');
 let lastname = ref('');
 let email = ref('');
@@ -7,7 +9,7 @@ let password = ref('');
 
 function Signup(e) {
 e.preventDefault();
-    fetch("http://localhost:3001/users/signup", {
+    fetch(config.url + "/users/signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
