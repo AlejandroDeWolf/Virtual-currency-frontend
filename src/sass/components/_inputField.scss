@@ -1,0 +1,13 @@
+@use "../colors";
+
+.inputField {
+    width: 240px;
+    height: 34px;
+    padding-left: 8px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+}
+
+::placeholder {
+    font-family: 'Maven Pro', sans-serif;
+}
