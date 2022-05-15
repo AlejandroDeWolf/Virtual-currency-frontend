@@ -8,12 +8,12 @@ let lastname = ref('');
 
 function getUser() {
     let token = localStorage.getItem("token");
-    
+
     fetch(config.url + "/users/amount", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization":  token
+            "Authorization": token
         }
     }).then(res => res.json())
         .then(json => {
@@ -23,7 +23,7 @@ function getUser() {
             firstname.value = json.userAmount[0].firstname;
             lastname.value = json.userAmount[0].lastname;
             console.log(amount);
-            
+
         })
 }
 
@@ -36,11 +36,11 @@ onMounted(() => {
     <div class="card">
         <h3>{{ firstname + " " + lastname }}</h3>
         <div>
-            <h2 >{{ amount }}</h2>
-            <p >credits</p>
+            <h2>{{ amount }}</h2>
+            <p>credits</p>
         </div>
         <div>
-            <input type="submit" value="Credits verzenden">
+            <input type="submit" value="Credits verzenden" class="btn btn--dashboard">
         </div>
     </div>
 </template>
