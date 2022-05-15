@@ -6,7 +6,7 @@ let email = ref('');
 let password = ref('');
 
 function Login(e) {
-e.preventDefault();
+    e.preventDefault();
     fetch(config.url + "/users/login", {
         method: "POST",
         headers: {
@@ -18,7 +18,7 @@ e.preventDefault();
         })
     }).then(res => res.json())
         .then(json => {
-            if(json.status === "success"){
+            if (json.status === "success") {
                 let token = json.token;
                 localStorage.setItem("token", token);
                 window.location.href = '/dashboard';
@@ -33,9 +33,9 @@ e.preventDefault();
     <div class="card">
         <h1>Login</h1>
 
-        <form action="">
-            <input type="text" placeholder="Email" v-model="email" class="inputField">
-            <input type="password" placeholder="Password" class="inputField" v-model="password">
+        <form action="" class="form">
+            <input type="text" placeholder="Email" v-model="email" class="form__input">
+            <input type="password" placeholder="Password" class="form__input" v-model="password">
             <input type="submit" @click="Login" value="Submit" class="btn">
         </form>
 
