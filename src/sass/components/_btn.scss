@@ -19,3 +19,12 @@
 .btn:hover {
     background: linear-gradient(86.91deg, #3D5AF1 0%, #758AF5 100%);
 }
+
+.btn--dashboard {
+    background: colors.$secondary;
+}
+
+.btn--dashboard:hover {
+    background: colors.$accent;
+    color: colors.$primary;
+}
