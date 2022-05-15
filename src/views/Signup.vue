@@ -23,6 +23,9 @@ e.preventDefault();
     }).then(res => res.json())
     .then(json => {
         console.log(json);
+        if(json.status === "success"){
+            window.location.href = '/';
+        }
     })
 }
 
