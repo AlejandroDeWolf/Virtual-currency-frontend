@@ -1,7 +1,5 @@
-const config = {
-   
-    url: "http://localhost:3001",
+export const config = {
+
+    url: "https://currency-app-imd.herokuapp.com",
 
 }
-
-module.exports = config;
