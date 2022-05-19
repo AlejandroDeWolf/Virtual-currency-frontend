@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import config from '../../config/config'
+import { config } from '../../config/config'
 
 let firstname = ref('');
 let lastname = ref('');

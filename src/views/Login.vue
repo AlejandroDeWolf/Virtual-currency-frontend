@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import config from '../../config/config'
+import { config } from '../../config/config'
 
 let email = ref('');
 let password = ref('');
