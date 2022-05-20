@@ -8,6 +8,7 @@ let lastname = ref('');
 
 let type = ref('');
 let transactions = ref('');
+let sender = ref('');
 
 function getUser() {
     let token = localStorage.getItem("token");
@@ -42,22 +43,11 @@ function getTransactions(){
         },
     }).then(res => res.json())
         .then(json => {
-            console.log(json);
             if(json.status === "success"){
-                let firstname = localStorage.getItem("firstname");
-                let transactionsData = json.data.transactions
-                transactionsData.forEach(element => {
-                    if(element.receiver == firstname){
-                        //je krijgt coins
-                        type.value = "+"
-                        console.log(type.value)
-                    } else if(element.receiver != firstname) {
-                        type.value = "-"
-                        console.log(type.value)
-                    }   
-                })
-                transactions.value = transactionsData;
+                transactions.value = json.data.transactions;
+                sender.value = json.data.user;
             }
+            console.log(json);
 
         }).catch(err => {
             console.log(err)
@@ -90,21 +80,45 @@ onMounted(() => {
 
 <template>
     <div class="card">
-        <h3>{{ firstname + " " + lastname }}</h3>
-        <div>
-            <h2>{{ amount }}</h2>
-            <p>credits</p>
+        <h3 class="user">{{ firstname + " " + lastname }}</h3>
+        <div class="balance">
+            <h2 class="balance__amount"> {{ amount }}</h2>
+            <p class="balance__text">credits</p>
         </div>
        <div>
             <router-link to="/send" class="btn btn--dashboard">Credits verzenden</router-link>
         </div>
-        <div>
-            <ul>
-                <li v-bind:key="index" v-for="t, index in transactions">
-                    <p @click="Details">Transactie</p>
-                    <strong>From: {{ t.receiver }} </strong> 
-                    <span> {{type}} {{t.amount}} coins </span> 
-                    <span> {{t.reason}}</span>
+        <div class="transactions">
+            <ul class="transactions__list">
+                <li class="transactions__list__item" v-bind:key="index" v-for="t, index in transactions">
+                    <!-- <div @click="Details">
+                        From: {{ t.receiver }}
+                    </div>   -->
+                    <div  v-if="t.receiver === firstname" v-bind:key="index" v-for="s, index in sender">
+                        <div class="item__person" v-if="s._id === t.sender">
+                            Van:  {{ s.firstname }}
+                        </div>
+                    </div> 
+                    <div class="item__person" v-else>
+                       Aan: {{ t.receiver}}
+                    </div> 
+
+                    <div class="item__count" v-if="t.receiver === firstname">
+                        <div>
+                            + {{t.amount}} coins
+                        </div>
+                        <div>
+                            {{ t.reason}}
+                        </div>
+                    </div>
+                    <div class="item__count" v-else>
+                        <div>
+                            - {{t.amount}} coins
+                        </div>
+                        <div>
+                            {{ t.reason}}
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
