@@ -64,6 +64,24 @@ function getTransactions(){
         })
 }
 
+//get transaction details from one by id
+function Details() {
+    let token = localStorage.getItem("token");
+    let id = transactions.value[0]._id;
+    //console.log(transactions.value[0]._id)
+    fetch(config.url + "/transactions/" + id, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+        }
+    }).then(res => res.json())
+        .then(json => {
+            console.log(json);
+
+        })
+}
+
 onMounted(() => {
     getUser();
     getTransactions();
@@ -83,6 +101,7 @@ onMounted(() => {
         <div>
             <ul>
                 <li v-bind:key="index" v-for="t, index in transactions">
+                    <p @click="Details">Transactie</p>
                     <strong>From: {{ t.receiver }} </strong> 
                     <span> {{type}} {{t.amount}} coins </span> 
                     <span> {{t.reason}}</span>
