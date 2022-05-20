@@ -27,8 +27,43 @@ function getUser() {
         })
 }
 
+
+function getTransactions(){
+    let token = localStorage.getItem("token");
+
+    fetch(config.url + "/transactions", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+        },
+    }).then(res => res.json())
+        .then(json => {
+            console.log(json);
+            if(json.status === "success"){
+                let firstname = localStorage.getItem("firstname");
+                let transactionsData = json.data.transactions
+                transactionsData.forEach(element => {
+                    if(element.receiver == firstname){
+                        //je krijgt coins
+                        type.value = "+"
+                        console.log(type.value)
+                    } else if(element.receiver != firstname) {
+                        type.value = "-"
+                        console.log(type.value)
+                    }   
+                })
+                transactions.value = transactionsData;
+            }
+
+        }).catch(err => {
+            console.log(err)
+        })
+}
+
 onMounted(() => {
     getUser();
+    getTransactions();
 })
 </script>
 
@@ -39,8 +74,17 @@ onMounted(() => {
             <h2>{{ amount }}</h2>
             <p>credits</p>
         </div>
+       <div>
+            <router-link to="/send" class="btn btn--dashboard">Credits verzenden</router-link>
+        </div>
         <div>
-            <input type="submit" value="Credits verzenden" class="btn btn--dashboard">
+            <ul>
+                <li v-bind:key="index" v-for="t, index in transactions">
+                    <strong>From: {{ t.receiver }} </strong> 
+                    <span> {{type}} {{t.amount}} coins </span> 
+                    <span> {{t.reason}}</span>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
