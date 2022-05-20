@@ -6,6 +6,9 @@ let amount = ref('');
 let firstname = ref('');
 let lastname = ref('');
 
+let type = ref('');
+let transactions = ref('');
+
 function getUser() {
     let token = localStorage.getItem("token");
 

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import config from '../../config/config'
+import { config } from '../../config/config'
 
 let sender = ref('');
 let sendAmount = ref('');
