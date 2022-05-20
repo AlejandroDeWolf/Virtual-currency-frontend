@@ -21,6 +21,7 @@ function Login(e) {
             if (json.status === "success") {
                 let token = json.token;
                 localStorage.setItem("token", token);
+                localStorage.setItem("firstname", json.firstname)
                 window.location.href = '/dashboard';
             }
             console.log(json);
