@@ -1,0 +1,13 @@
+@use "../colors";
+
+.error {
+    width: 240px;
+    background-color: colors.$error;
+    margin-bottom: 1em;
+    border-radius: 6px;
+}
+
+.error__message {
+    color: white;
+    text-align: center;
+}
