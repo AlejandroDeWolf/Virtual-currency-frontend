@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { config } from '../../config/config'
+import Navigation from '../components/Navigation.vue'
+
 
 let users = ref('');
 
@@ -24,14 +26,14 @@ function getAllUsers() {
 onMounted(() => {
     getAllUsers();
 })
-    
+
 
 </script>
 
 <template>
     <ul>
         <li v-for="user in users">
-            {{user.firstname}} {{user.lastname}} {{user.balance}}
+            {{ user.firstname }} {{ user.lastname }} {{ user.balance }}
         </li>
     </ul>
 </template>

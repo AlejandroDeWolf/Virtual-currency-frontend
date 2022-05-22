@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { config } from '../../config/config'
+import Navigation from '../components/Navigation.vue'
+
 
 let amount = ref('');
 let firstname = ref('');
@@ -62,13 +64,7 @@ onMounted(() => {
             <h2 class="balance__amount"> {{ amount }}</h2>
             <p class="balance__text">credits</p>
         </div>
-
-        <div class="btn btn--dashboard">
-            <router-link to="/send">Credits verzenden</router-link>
-        </div>
-
-        <div class="btn btn--dashboard">
-            <router-link to="/transactions">Bekijk transacties</router-link>
-        </div>
     </div>
+
+    <Navigation />
 </template>

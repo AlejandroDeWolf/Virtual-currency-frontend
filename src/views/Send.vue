@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { config } from '../../config/config'
+import Navigation from '../components/Navigation.vue'
+
 
 let sender = ref('');
 let receiver = ref('');
@@ -54,4 +56,6 @@ function addTransaction() {
             <input type="submit" value="Verzenden" @click="addTransaction" class="btn">
         </div>
     </div>
+
+    <Navigation />
 </template>

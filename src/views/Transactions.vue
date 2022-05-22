@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { config } from '../../config/config'
+import Navigation from '../components/Navigation.vue'
+
 
 let username = ref('');
 let transactions = ref('');
@@ -88,4 +90,6 @@ onMounted(() => {
             </ul>
         </div>
     </div>
+
+    <Navigation />
 </template>

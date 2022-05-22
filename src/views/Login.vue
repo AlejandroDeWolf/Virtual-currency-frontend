@@ -40,6 +40,6 @@ function Login(e) {
             <input type="submit" @click="Login" value="Submit" class="btn">
         </form>
 
-        <router-link to="/signup" class="link">Sign up here</router-link>
+        <router-link to="/signup" class="nav__link">Sign up here</router-link>
     </div>
 </template>
