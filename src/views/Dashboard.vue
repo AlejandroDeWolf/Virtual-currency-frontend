@@ -54,7 +54,7 @@ onMounted(() => {
             <p class="error__message" >{{ errorMessage }}</p>
         </div>
 
-        <div>
+        <div class="logout">
             <a href="" @click="logout" class="link link--logout">Uitloggen</a>
         </div>
 

@@ -9,3 +9,14 @@
     text-decoration: underline;
     color: colors.$accent;
 }
+
+.logout {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em 1em 0 0;
+}
+
+.link--logout:hover {
+    color: colors.$contrast;
+} 
