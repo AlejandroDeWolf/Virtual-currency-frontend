@@ -42,7 +42,7 @@ onMounted(() => {
 
 <template>
     <div class="card">
-        
+
         <div v-if="error === 'error'" class="error">
             <p class="error__message" >{{ errorMessage }}</p>
         </div>
@@ -52,6 +52,10 @@ onMounted(() => {
         <div class="balance">
             <h2 class="balance__amount"> {{ amount }}</h2>
             <p class="balance__text">credits</p>
+        </div>
+
+        <div>
+            <router-link to="/leaderboard" class="link">Leaderboard &#8594;</router-link>
         </div>
     </div>
 
