@@ -1,0 +1,11 @@
+@use "../colors";
+
+.link {
+    color: colors.$secondary;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: colors.$accent;
+}
