@@ -1,0 +1,18 @@
+@use "../colors";
+
+.list {
+    width: 250px;
+    padding-left: 0; 
+}
+
+.list__item {
+    display: flex;
+    justify-content: space-between;
+    color: colors.$contrast;
+    padding: 1em 0;
+}
+
+.list__item__balance {
+    color: colors.$accent;
+    font-weight: bold;
+}
