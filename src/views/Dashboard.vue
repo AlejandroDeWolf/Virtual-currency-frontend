@@ -7,10 +7,8 @@ import Navigation from '../components/Navigation.vue'
 let amount = ref('');
 let firstname = ref('');
 let lastname = ref('');
-
-let type = ref('');
-let transactions = ref('');
-let sender = ref('');
+let error = ref('');
+let errorMessage = ref('');
 
 function getUser() {
     let token = localStorage.getItem("token");
@@ -23,33 +21,19 @@ function getUser() {
         }
     }).then(res => res.json())
         .then(json => {
-            //amount = json.userAmount[0].balance;
             console.log(json);
-            amount.value = json.userAmount[0].balance;
-            firstname.value = json.userAmount[0].firstname;
-            lastname.value = json.userAmount[0].lastname;
-            console.log(amount);
+            if(json.status === "success") {
+                amount.value = json.userAmount[0].balance;
+                firstname.value = json.userAmount[0].firstname;
+                lastname.value = json.userAmount[0].lastname;
+            } else {
+                error.value = json.status;
+                errorMessage.value = json.message;
+            }
 
         })
 }
 
-//get transaction details from one by id
-function Details() {
-    let token = localStorage.getItem("token");
-    let id = transactions.value[0]._id;
-    //console.log(transactions.value[0]._id)
-    fetch(config.url + "/transactions/" + id, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": token
-        }
-    }).then(res => res.json())
-        .then(json => {
-            console.log(json);
-
-        })
-}
 
 onMounted(() => {
     getUser();
@@ -58,6 +42,11 @@ onMounted(() => {
 
 <template>
     <div class="card">
+        
+        <div v-if="error === 'error'" class="error">
+            <p class="error__message" >{{ errorMessage }}</p>
+        </div>
+
         <h3 class="user">{{ firstname + " " + lastname }}</h3>
 
         <div class="balance">

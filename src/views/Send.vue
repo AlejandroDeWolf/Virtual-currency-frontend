@@ -8,6 +8,8 @@ let sender = ref('');
 let receiver = ref('');
 let sendAmount = ref('');
 let reason = ref('');
+let error = ref('');
+let errorMessage = ref('');
 
 function addTransaction() {
     let token = localStorage.getItem("token");
@@ -27,10 +29,15 @@ function addTransaction() {
     }).then(res => res.json())
         .then(json => {
             console.log(json);
-            window.location.href = '/dashboard';
+            if(json.status === "success") {
+                window.location.href = '/dashboard';
+            } else {
+                error.value = json.status;
+                errorMessage.value = json.message;
+            }
 
         }).catch(err => {
-            console.log(err)
+            errorMessage.value = "Er ging iets mis, probeer opnieuw.";
         })
 }
 
@@ -40,6 +47,9 @@ function addTransaction() {
 <template>
     <div class="card">
         <h2>Maak een transactie</h2>
+        <div v-if="error == 'error'" class="error">
+            <p class="error__message" >{{ errorMessage }}</p>
+        </div>
         <div>
             <h3>Naam ontvanger</h3>
             <input type="text" v-model="receiver" class="form__input">

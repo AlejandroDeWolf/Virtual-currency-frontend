@@ -7,6 +7,8 @@ let firstname = ref('');
 let lastname = ref('');
 let email = ref('');
 let password = ref('');
+let error = ref('');
+let errorMessage = ref('');
 
 function Signup(e) {
     e.preventDefault();
@@ -27,6 +29,9 @@ function Signup(e) {
             console.log(json);
             if (json.status === "success") {
                 window.location.href = '/';
+            } else {
+                error.value = json.status;
+                errorMessage.value = json.message;
             }
         })
 }
@@ -36,6 +41,10 @@ function Signup(e) {
 <template>
     <div class="card">
         <h1>Sign up</h1>
+
+        <div v-if="error == 'error'" class="error">
+            <p class="error__message" >{{ errorMessage }}</p>
+        </div>
 
         <form action="" class="form">
             <input type="text" placeholder="Username" v-model="username" class="form__input">

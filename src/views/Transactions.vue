@@ -7,6 +7,8 @@ import Navigation from '../components/Navigation.vue'
 let username = ref('');
 let transactions = ref('');
 let sender = ref('');
+let error = ref('');
+let errorMessage = ref('');
 
 
 function getTransactions() {
@@ -23,11 +25,14 @@ function getTransactions() {
             if (json.status === "success") {
                 transactions.value = json.data.transactions;
                 sender.value = json.data.user;
+            } else {
+                error.value = json.status;
+                errorMessage.value = json.message;
             }
-            console.log(json);
 
         }).catch(err => {
-            console.log(err)
+            error.value = "error";
+            errorMessage.value = "Er ging iets mis, probeer opnieuw.";
         })
 }
 
@@ -58,6 +63,10 @@ onMounted(() => {
     <div class="card">
         <h2>Mijn transacties</h2>
 
+        <div v-if="error == 'error'" class="error">
+            <p class="error__message" >{{ errorMessage }}</p>
+        </div>
+        
         <div class="transactions">
             <ul class="transactions__list">
                 <li class="transactions__list__item" v-bind:key="index" v-for="t, index in transactions">
