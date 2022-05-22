@@ -29,6 +29,11 @@
     margin: 0;
 }
 
+.transactions {
+    overflow-y: scroll; 
+    height: 400px;
+}
+
 .transactions__list__item {
     list-style: none;
     color: colors.$contrast;
