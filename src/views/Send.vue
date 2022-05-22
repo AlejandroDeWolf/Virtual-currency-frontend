@@ -3,8 +3,8 @@ import { ref, onMounted } from 'vue'
 import { config } from '../../config/config'
 
 let sender = ref('');
-let sendAmount = ref('');
 let receiver = ref('');
+let sendAmount = ref('');
 let reason = ref('');
 
 function addTransaction() {
@@ -17,9 +17,9 @@ function addTransaction() {
             "Authorization": token
         },
         body: JSON.stringify({
-            amount: sendAmount.value,
             sender: sender.value,
             receiver: receiver.value,
+            amount: sendAmount.value,
             reason: reason.value,
         })
     }).then(res => res.json())
@@ -37,18 +37,18 @@ function addTransaction() {
 
 <template>
     <div class="card">
-        <h3>Maak een transactie</h3>
+        <h2>Maak een transactie</h2>
         <div>
-            <h2>Naam</h2>
-            <input type="text" v-model="receiver" >
+            <h3>Naam ontvanger</h3>
+            <input type="text" v-model="receiver" class="form__input">
         </div>
         <div>
-            <h2>Amount</h2>
-            <input type="text" v-model="sendAmount" >
+            <h3>Bedrag</h3>
+            <input type="text" v-model="sendAmount" class="form__input">
         </div>
         <div>
-            <h2>Beschrijving</h2>
-            <input type="text" v-model="reason" >
+            <h3>Beschrijving</h3>
+            <input type="text" v-model="reason" class="form__input">
         </div>
         <div>
             <input type="submit" value="Verzenden" @click="addTransaction" class="btn">
