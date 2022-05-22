@@ -41,6 +41,16 @@ function addTransaction() {
         })
 }
 
+function checkToken() {
+    let token = localStorage.getItem("token");
+    if(token === null) {
+        window.location.href = "/";
+    }
+}
+
+onMounted(() => {
+    checkToken();
+})
 
 </script>
 

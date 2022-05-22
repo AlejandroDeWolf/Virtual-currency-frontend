@@ -25,7 +25,11 @@ function getTransactions() {
             if (json.status === "success") {
                 transactions.value = json.data.transactions;
                 sender.value = json.data.user;
-            } else {
+            } else if(json.message === "Authorization failed") {
+                window.location.href= "/";
+
+            }
+             else {
                 error.value = json.status;
                 errorMessage.value = json.message;
             }

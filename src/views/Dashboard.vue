@@ -26,13 +26,20 @@ function getUser() {
                 amount.value = json.userAmount[0].balance;
                 firstname.value = json.userAmount[0].firstname;
                 lastname.value = json.userAmount[0].lastname;
+            } else if(json.message === "Authorization failed") {
+                window.location.href= "/";
             } else {
                 error.value = json.status;
                 errorMessage.value = json.message;
             }
-
         })
 }
+
+function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+}
+
 
 
 onMounted(() => {
@@ -45,6 +52,10 @@ onMounted(() => {
 
         <div v-if="error === 'error'" class="error">
             <p class="error__message" >{{ errorMessage }}</p>
+        </div>
+
+        <div>
+            <a href="" @click="logout" class="link link--logout">Uitloggen</a>
         </div>
 
         <h3 class="user">{{ firstname + " " + lastname }}</h3>

@@ -20,11 +20,15 @@ function getAllUsers() {
         .then(json => {
             //amount = json.userAmount[0].balance;
             console.log(json);
-            users.value = json.data.users;
-            for(let i = 0; i < users.value.length; i++) {
-                balance = users.value[i].balance;
-              
+            if(json.status === "success"){
+                users.value = json.data.users;
+            } else if(json.message === "Authorization failed") { //did not go through middleware so not logged in
+                window.location.href= "/";
+            } else {
+                error.value = json.status;
+                errorMessage.value = json.message;
             }
+            
 
         })
 }
