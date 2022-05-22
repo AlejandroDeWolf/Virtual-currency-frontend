@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { config } from '../../config/config'
 
+let username = ref('');
 let firstname = ref('');
 let lastname = ref('');
 let email = ref('');
@@ -15,6 +16,7 @@ function Signup(e) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
+            username: username.value,
             firstname: firstname.value,
             lastname: lastname.value,
             email: email.value,
@@ -36,6 +38,7 @@ function Signup(e) {
         <h1>Sign up</h1>
 
         <form action="" class="form">
+            <input type="text" placeholder="Username" v-model="username" class="form__input">
             <input type="text" placeholder="Firstname" v-model="firstname" class="form__input">
             <input type="text" placeholder="Lastname" v-model="lastname" class="form__input">
             <input type="text" placeholder="Email" v-model="email" class="form__input">
