@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation.vue'
 
 
 let users = ref('');
+let balance = ref('');
 
 function getAllUsers() {
     let token = localStorage.getItem("token");
@@ -18,8 +19,13 @@ function getAllUsers() {
     }).then(res => res.json())
         .then(json => {
             //amount = json.userAmount[0].balance;
-            console.log(json.data.users);
+            console.log(json);
             users.value = json.data.users;
+            for(let i = 0; i < users.value.length; i++) {
+                balance = users.value[i].balance;
+              
+            }
+
         })
 }
 
@@ -31,9 +37,21 @@ onMounted(() => {
 </script>
 
 <template>
-    <ul>
-        <li v-for="user in users">
-            {{ user.firstname }} {{ user.lastname }} {{ user.balance }}
-        </li>
-    </ul>
+    <div class="card">
+        <h2>Leaderboard</h2>
+        <div class="scrollable">
+            <ul class="list">
+                <li class="list__item" v-for="user in users">
+                   <span>
+                       {{ user.username }}
+                    </span> 
+                    <span class="list__item__balance">
+                        {{ user.balance }}
+                    </span>  
+                </li>
+            </ul>
+        </div>
+    </div>
+
+     <Navigation />
 </template>

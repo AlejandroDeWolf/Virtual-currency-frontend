@@ -66,8 +66,8 @@ onMounted(() => {
         <div v-if="error == 'error'" class="error">
             <p class="error__message" >{{ errorMessage }}</p>
         </div>
-        
-        <div class="transactions">
+
+        <div class="transactions scrollable">
             <ul class="transactions__list">
                 <li class="transactions__list__item" v-bind:key="index" v-for="t, index in transactions">
                     <div v-if="t.receiver === username" v-bind:key="index" v-for="s, index in sender">
