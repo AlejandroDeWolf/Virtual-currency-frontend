@@ -18,10 +18,18 @@ function getAllUsers() {
         }
     }).then(res => res.json())
         .then(json => {
-            //amount = json.userAmount[0].balance;
             console.log(json);
+            //sort leaderboard descending
             if(json.status === "success"){
-                users.value = json.data.users;
+                let arrayOfObjects = json.data.users;
+                let byAmount = arrayOfObjects.slice(0);
+
+                let userData = byAmount.sort(function(a,b) {
+                    let array = b.balance - a.balance;
+                    return array;
+                });
+                users.value = userData;
+
             } else if(json.message === "Authorization failed") { //did not go through middleware so not logged in
                 window.location.href= "/";
             } else {
