@@ -5,6 +5,7 @@ import Dashboard from '../views/Dashboard.vue';
 import Send from '../views/Send.vue';
 import Leaderboard from '../views/Leaderboard.vue';
 import Transactions from '../views/Transactions.vue';
+import Details from '../views/Detail.vue';
 
 const routes = [
     { path: '/', name: 'Login', component: Login },
@@ -13,6 +14,7 @@ const routes = [
     { path: '/send', name: 'Send', component: Send },
     { path: '/leaderboard', name: "Leaderboard", component: Leaderboard },
     { path: '/transactions', name: "Transactions", component: Transactions },
+    { path: '/details/:id', name: "Details", component: Details },
 ]
 
 const router = createRouter({
