@@ -25,6 +25,7 @@ function getTransactions() {
             if (json.status === "success") {
                 transactions.value = json.data.transactions;
                 sender.value = json.data.user;
+                username.value = localStorage.getItem("username");
             } else if(json.message === "Authorization failed") {
                 window.location.href= "/";
 
@@ -40,23 +41,6 @@ function getTransactions() {
         })
 }
 
-//get transaction details from one by id
-function Details() {
-    let token = localStorage.getItem("token");
-    let id = transactions.value[0]._id;
-    //console.log(transactions.value[0]._id)
-    fetch(config.url + "/transactions/" + id, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": token
-        }
-    }).then(res => res.json())
-        .then(json => {
-            console.log(json);
-
-        })
-}
 
 onMounted(() => {
     getTransactions();
@@ -74,31 +58,35 @@ onMounted(() => {
         <div class="transactions scrollable">
             <ul class="transactions__list">
                 <li class="transactions__list__item" v-bind:key="index" v-for="t, index in transactions">
-                    <div v-if="t.receiver === username" v-bind:key="index" v-for="s, index in sender">
-                        <div class="item__person" v-if="s._id === t.sender">
-                            Van: {{ s.username }}
+                    <router-link class="router__link" :to="'/details/' + t._id">
+                        <div v-if="t.receiver === username" v-bind:key="index" v-for="s, index in sender">
+                            <div class="item__person" v-if="s._id === t.sender">
+                                Van: {{ s.username }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="item__person" v-else>
-                        Aan: {{ t.receiver }}
-                    </div>
+                        <div class="item__person" v-else>
+                            Aan: {{ t.receiver }}
+                        </div>
 
-                    <div class="item__count" v-if="t.receiver === username">
-                        <div>
-                            + {{ t.amount }} coins
+                        <div class="item__count" v-if="t.receiver === username">
+                            <div>
+                                    + {{ t.amount }} coins
+                            </div>
+                            <div>
+                                {{ t.reason }}
+                            </div>
                         </div>
-                        <div>
-                            {{ t.reason }}
+                        <div class="item__count" v-else>
+                            <div>
+                                
+                                - {{ t.amount }} coins
+                            
+                            </div>
+                            <div>
+                                {{ t.reason }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="item__count" v-else>
-                        <div>
-                            - {{ t.amount }} coins
-                        </div>
-                        <div>
-                            {{ t.reason }}
-                        </div>
-                    </div>
+                    </router-link>
                 </li>
             </ul>
         </div>
