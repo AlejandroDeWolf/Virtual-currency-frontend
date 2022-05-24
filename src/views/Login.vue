@@ -23,7 +23,7 @@ function Login(e) {
             if (json.status === "success") {
                 let token = json.token;
                 localStorage.setItem("token", token);
-                localStorage.setItem("firstname", json.firstname)
+                localStorage.setItem("username", json.username)
                 window.location.href = '/dashboard';
             } else {
                 error.value = json.status;
