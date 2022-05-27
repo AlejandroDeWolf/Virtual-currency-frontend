@@ -29,7 +29,7 @@ function addTransaction() {
     }).then(res => res.json())
         .then(json => {
             console.log(json);
-            if(json.status === "success") {
+            if (json.status === "success") {
                 window.location.href = '/dashboard';
             } else {
                 error.value = json.status;
@@ -43,7 +43,7 @@ function addTransaction() {
 
 function checkToken() {
     let token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
         window.location.href = "/";
     }
 }
@@ -58,10 +58,10 @@ onMounted(() => {
     <div class="card">
         <h2>Maak een transactie</h2>
         <div v-if="error == 'error'" class="error">
-            <p class="error__message" >{{ errorMessage }}</p>
+            <p class="error__message">{{ errorMessage }}</p>
         </div>
         <div>
-            <h3>Naam ontvanger</h3>
+            <h3>Username ontvanger</h3>
             <input type="text" v-model="receiver" class="form__input">
         </div>
         <div>
