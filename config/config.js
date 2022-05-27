@@ -1,5 +1,5 @@
 export const config = {
 
-    url: "http://localhost:3001",
+    url: "https://currency-app-backend.herokuapp.com",
 
 }
