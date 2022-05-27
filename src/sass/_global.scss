@@ -53,3 +53,7 @@ form {
 p {
     color: colors.$contrast;
 }
+
+::-webkit-scrollbar {
+    width: 0px;
+}
