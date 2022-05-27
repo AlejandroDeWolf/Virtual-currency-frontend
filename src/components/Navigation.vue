@@ -25,9 +25,6 @@
         </div>
 
     </div>
-
-    <img src="logo.png" alt="">
-
 </template>
 
 <style scoped>
